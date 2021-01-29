@@ -903,7 +903,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -1.11, y: 0}
+  m_AnchoredPosition: {x: -1.1100006, y: 0}
   m_SizeDelta: {x: -5.395935, y: -3.8554993}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &114694382
@@ -2926,6 +2926,9 @@ GameObject:
   m_Component:
   - component: {fileID: 395402177}
   - component: {fileID: 395402178}
+  - component: {fileID: 395402179}
+  - component: {fileID: 395402180}
+  - component: {fileID: 395402181}
   m_Layer: 5
   m_Name: HealthBar
   m_TagString: Untagged
@@ -2941,8 +2944,8 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 395402176}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 5.75}
+  m_LocalScale: {x: 0.06, y: 0.06, z: 0.06}
   m_Children:
   - {fileID: 114694381}
   - {fileID: 476841722}
@@ -2952,7 +2955,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -327.7, y: 191.8}
+  m_AnchoredPosition: {x: -8, y: 12}
   m_SizeDelta: {x: 216.09775, y: 37.55249}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &395402178
@@ -3005,6 +3008,75 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &395402179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 395402176}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83978af942d81744d8e05aa346a67f5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slider: {fileID: 395402178}
+  gradient:
+    serializedVersion: 2
+    key0: {r: 0.9150943, g: 0.084367216, b: 0.06474723, a: 1}
+    key1: {r: 1, g: 0.7875386, b: 0.2028302, a: 1}
+    key2: {r: 0.087221436, g: 0.6603774, b: 0, a: 0}
+    key3: {r: 0.087221436, g: 0.6603774, b: 0, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 15998
+    ctime1: 39321
+    ctime2: 65535
+    ctime3: 65535
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 1
+    m_NumColorKeys: 3
+    m_NumAlphaKeys: 2
+  fill: {fileID: 114694382}
+--- !u!114 &395402180
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 395402176}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91e29fbe5e093be4c99044fc170917d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  camera: {fileID: 963194228}
+--- !u!114 &395402181
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 395402176}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c58d3833e6d2f43478b78237743fd7b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  camera: {fileID: 963194225}
 --- !u!4 &399393350 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6956471702241277418, guid: 5b7a022b53008f8499cbd2a5c3f62c9e,
@@ -12029,7 +12101,7 @@ Canvas:
   m_GameObject: {fileID: 1394708578}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
+  m_RenderMode: 2
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
@@ -12050,7 +12122,7 @@ RectTransform:
   m_GameObject: {fileID: 1394708578}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 395402177}
   m_Father: {fileID: 0}
@@ -12059,8 +12131,8 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0, y: 0}
+  m_SizeDelta: {x: 942, y: 375}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!4 &1398890875 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6956471702241277418, guid: 5b7a022b53008f8499cbd2a5c3f62c9e,
@@ -17926,6 +17998,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player Tank
       objectReference: {fileID: 0}
+    - target: {fileID: 2377548898739081177, guid: ca4fb6e4022abdf4ca27f094b972e6d7,
+        type: 3}
+      propertyPath: healthBar
+      value: 
+      objectReference: {fileID: 395402179}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ca4fb6e4022abdf4ca27f094b972e6d7, type: 3}
 --- !u!1001 &4071523179918374505

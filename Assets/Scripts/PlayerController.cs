@@ -4,23 +4,27 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public int maxHealth = 5;
+    public int currentHealth;
     private float horizontalInput;
     private float verticalInput;
     private float speed = 6.0f;
     private float turnSpeed = 100.0f;
+    public HealthBar healthBar;
     public GameObject bulletPrefab;
     public GameObject[] collisionList;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        currentHealth = maxHealth;
+        healthBar.SetMaxHealth(maxHealth);
     }
 
     //for movement (called once per frame)
     void FixedUpdate()
     {
-        //get inputs
+        //get inputs for movement
         horizontalInput = Input.GetAxis("Horizontal");
         verticalInput = Input.GetAxis("Vertical");
 
@@ -34,15 +38,11 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    //(called once per frame)
-    void Update()
+    //method to run when the player takes damage; will remove a given amount of health and adjust health bar respectively
+    private void TakeDamage(int damage)
     {
-        
+        currentHealth -= damage;
+        healthBar.SetHealth(currentHealth);
     }
 
-    //collision
-    private void OnTriggerEnter(Collider other)
-    {
-        
-    }
 }
