@@ -16,6 +16,7 @@ public class FollowCamera : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //object's position will follow the camera and adjusted to be 
         transform.position = camera.transform.position + offset;
     }
 }
