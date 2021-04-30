@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MoveForward : MonoBehaviour
 {
-    private float speed = 12.5f;
+    private float speed = 14.5f;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,6 +15,6 @@ public class MoveForward : MonoBehaviour
     void Update()
     {
         //continuously move object forward
-        transform.Translate(Vector3.forward * Time.deltaTime * speed);
+        transform.Translate(Vector3.forward * speed * Time.deltaTime);
     }
 }

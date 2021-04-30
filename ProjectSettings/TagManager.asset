@@ -3,7 +3,11 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Health Powerup
+  - Enemy
+  - Bullet
+  - Walls
   layers:
   - Default
   - TransparentFX

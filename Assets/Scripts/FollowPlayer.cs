@@ -6,10 +6,10 @@ public class FollowPlayer : MonoBehaviour
 {
     public GameObject player;
     private Vector3 offset = new Vector3(0f, 15f, 0f);
-    private float minX = -10.2f;
-    private float maxX = 10.2f;
-    private float minZ = -17.3f;
-    private float maxZ = 17.3f;
+    private float minX = -11.5f;
+    private float maxX = 11.5f;
+    private float minZ = -17.4f;
+    private float maxZ = 17.4f;
     // Start is called before the first frame update
     void Start()
     {

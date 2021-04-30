@@ -16,10 +16,13 @@ public class DetectCollision : MonoBehaviour
         
     }
 
-    //check for collision between two colliders
-    private void OnTriggerEnter(Collider other)
+    //check for collision 
+    private void OnCollisionEnter(Collision collision)
     {
-        //destroy object
-        Destroy(gameObject);
+        if (collision.gameObject.CompareTag("Walls"))
+        {
+            //destroy object
+            Destroy(gameObject);
+        }
     }
 }
