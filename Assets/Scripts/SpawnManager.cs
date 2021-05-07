@@ -6,7 +6,8 @@ public class SpawnManager : MonoBehaviour
 {
     public GameObject enemyPrefab;
     public GameObject healthPrefab;
-    private int enemyCount;
+    private GameManager gameManager;
+    public int enemyCount;
     private int waveNum = 3;
     private Vector3[] enemySpawnLocs = {new Vector3(-20.5f, 0f, 22f), new Vector3(-14f, 0f, 22f), new Vector3(0f, 0f, 22f),
     new Vector3(4.5f, 0f, 22f), new Vector3(21f, 0f, 22f), new Vector3(22f, 0f, 11.5f), new Vector3(-14.5f, 0f, 13.5f),
@@ -22,6 +23,7 @@ public class SpawnManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
         enemySpawns = new bool[enemySpawnLocs.Length];
         pickupSpawns = new bool[pickupSpawnLocs.Length];
 
@@ -32,21 +34,24 @@ public class SpawnManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //get the current amount of enemies
-        enemyCount = FindObjectsOfType<EnemyTank>().Length;
-
-        //make sure waves are not at the max of 16
-        if (waveNum == 16)
+        if (gameManager.isGameActive)
         {
-            Time.timeScale = 0;
-        }
+            //get the current amount of enemies
+            enemyCount = FindObjectsOfType<EnemyTank>().Length;
 
-        //spawn a new wave if all current enemies are gone
-        if (enemyCount == 0)
-        {
-            waveNum++;
-            enemySpawns = new bool[enemySpawnLocs.Length];
-            SpawnWave(waveNum);
+            //make sure waves are not at the max of 16
+            if (waveNum == 16)
+            {
+                gameManager.GameOver();
+            }
+
+            //spawn a new wave if all current enemies are gone
+            if (enemyCount == 0)
+            {
+                waveNum++;
+                enemySpawns = new bool[enemySpawnLocs.Length];
+                SpawnWave(waveNum);
+            }
         }
     }
 

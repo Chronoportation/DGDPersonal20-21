@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     private float turnSpeed = 120.0f;
     private bool readyForDamage = true;
     private Rigidbody rb;
+    private GameManager gameManager;
     public HealthBar healthBar;
     public GameObject bulletPrefab;
 
@@ -21,25 +22,29 @@ public class PlayerController : MonoBehaviour
         //prep health info
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
+
         rb = GetComponent<Rigidbody>();
+        gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
     }
 
     //called once per frame regulated
     void FixedUpdate()
     {
-        //check if player health is 0 to end the game
-        if (currentHealth == 0)
+        if (gameManager.isGameActive)
         {
-            Destroy(gameObject);
-            Debug.Log("Game Over");
+            //check if player health is 0 to end the game
+            if (currentHealth == 0)
+            {
+                gameManager.GameOver();
+            }
+
+            //get inputs for movement
+            horizontalInput = Input.GetAxis("Horizontal");
+            verticalInput = Input.GetAxis("Vertical");
+
+            //move the player
+            HandleMovement();
         }
-
-        //get inputs for movement
-        horizontalInput = Input.GetAxis("Horizontal");
-        verticalInput = Input.GetAxis("Vertical");
-
-        //move the player
-        HandleMovement();
     }
 
     private void HandleMovement()
@@ -63,15 +68,6 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Health Powerup") && currentHealth < maxHealth)
-        {
-            //give one health point back to the player
-            TakeDamage(-1);
-
-            //destroy the powerup
-            Destroy(collision.gameObject);
-        }
-
         if (collision.gameObject.CompareTag("Enemy") && readyForDamage)
         {
             //set a countdown to prevent damage from building up
@@ -79,12 +75,36 @@ public class PlayerController : MonoBehaviour
             StartCoroutine(CollisionCountdown());
             TakeDamage(1);
         }
+
+        if (collision.gameObject.CompareTag("Enemy Bullet"))
+        {
+            if (readyForDamage)
+            {
+                readyForDamage = false;
+                StartCoroutine(CollisionCountdown());
+                TakeDamage(1);
+            }
+
+            Destroy(collision.gameObject);
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Health Powerup") && currentHealth < maxHealth)
+        {
+            //give one health point back to the player
+            TakeDamage(-1);
+
+            //destroy the powerup
+            Destroy(other.gameObject);
+        }
     }
 
     //run a cooldown so collision doesn't compound
     IEnumerator CollisionCountdown()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.5f);
         readyForDamage = true;
     }
 

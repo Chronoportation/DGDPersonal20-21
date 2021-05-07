@@ -11,6 +11,8 @@ public class EnemyTank : MonoBehaviour
     private float maxDistance = 25.0f;
     private Vector3 playerDirection;
     private GameObject player;
+    private GameManager gameManager;
+    public GameObject bulletPrefab;
 
     // Start is called before the first frame update
     void Start()
@@ -18,30 +20,28 @@ public class EnemyTank : MonoBehaviour
         currentHealth = maxHealth;
 
         player = GameObject.FindGameObjectWithTag("Player");
+        gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
     }
 
     //called once per frame
     void FixedUpdate()
     {
-        //destroy enemy if health is zero
-        if (currentHealth == 0)
+        if (gameManager.isGameActive)
         {
-            Destroy(gameObject);
-        }
+            //destroy enemy if health is zero
+            if (currentHealth == 0)
+            {
+                Destroy(gameObject);
+            }
 
-        //always look to the player
-        transform.LookAt(player.transform);
+            //always look to the player
+            transform.LookAt(player.transform);
 
-        //move towards the player if the player is within the minimum distance
-        if (Vector3.Distance(transform.position, player.transform.position) <= minDistance)
-        {
-            transform.Translate(Vector3.forward * speed * Time.deltaTime);
-        }
-
-        //shoot at the player if the player is within the maximum distance
-        if (Vector3.Distance(transform.position, player.transform.position) <= maxDistance)
-        {
-
+            //move towards the player if the player is within the minimum distance
+            if (Vector3.Distance(transform.position, player.transform.position) <= minDistance)
+            {
+                transform.Translate(Vector3.forward * speed * Time.deltaTime);
+            }
         }
     }
 

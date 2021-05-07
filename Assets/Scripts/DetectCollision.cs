@@ -24,5 +24,23 @@ public class DetectCollision : MonoBehaviour
             //destroy object
             Destroy(gameObject);
         }
+
+        if (gameObject.CompareTag("Bullet") && collision.gameObject.CompareTag("Player"))
+        {
+            //destroy object
+            Destroy(gameObject);
+        }
+
+        if (gameObject.CompareTag("Enemy Bullet") && collision.gameObject.CompareTag("Enemy"))
+        {
+            //destroy object
+            Destroy(gameObject);
+        }
+
+        if (collision.gameObject.CompareTag("Bullet") ||collision.gameObject.CompareTag("Enemy Bullet"))
+        {
+            Destroy(gameObject);
+            Destroy(collision.gameObject);
+        }
     }
 }
