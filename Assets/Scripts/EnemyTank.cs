@@ -8,7 +8,6 @@ public class EnemyTank : MonoBehaviour
     private int currentHealth;
     private float speed = 5.5f;
     private float minDistance = 15.0f;
-    private float maxDistance = 25.0f;
     private Vector3 playerDirection;
     private GameObject player;
     private GameManager gameManager;

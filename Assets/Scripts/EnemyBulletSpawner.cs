@@ -6,6 +6,8 @@ public class EnemyBulletSpawner : MonoBehaviour
 {
     public GameObject bulletPrefab;
     private Transform player;
+    private AudioSource spawnerAudio;
+    public AudioClip shootSound;
     private float cooldown = 100f;
     private float currentCooldown = 100f;
     private float maxDistance = 25.0f;
@@ -16,6 +18,7 @@ public class EnemyBulletSpawner : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
+        spawnerAudio = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -30,6 +33,8 @@ public class EnemyBulletSpawner : MonoBehaviour
                 Instantiate(bulletPrefab, transform.position, transform.rotation);
                 //reset cooldown
                 currentCooldown = 0;
+                //play sound effect
+                spawnerAudio.PlayOneShot(shootSound, 0.45f);
             }
             //add to currentCooldown
             currentCooldown += 0.5f;

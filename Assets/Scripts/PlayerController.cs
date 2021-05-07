@@ -11,6 +11,8 @@ public class PlayerController : MonoBehaviour
     private float speed = 7.5f;
     private float turnSpeed = 120.0f;
     private bool readyForDamage = true;
+    private AudioSource playerAudio;
+    public AudioClip powerupSound;
     private Rigidbody rb;
     private GameManager gameManager;
     public HealthBar healthBar;
@@ -25,6 +27,7 @@ public class PlayerController : MonoBehaviour
 
         rb = GetComponent<Rigidbody>();
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
+        playerAudio = GetComponent<AudioSource>();
     }
 
     //called once per frame regulated
@@ -98,6 +101,9 @@ public class PlayerController : MonoBehaviour
 
             //destroy the powerup
             Destroy(other.gameObject);
+
+            //play sound effect
+            playerAudio.PlayOneShot(powerupSound, 0.75f);
         }
     }
 
