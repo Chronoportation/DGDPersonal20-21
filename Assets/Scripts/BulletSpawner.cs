@@ -16,6 +16,7 @@ public class BulletSpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //set up companion objects/components
         spawnerAudio = GetComponent<AudioSource>();
     }
 

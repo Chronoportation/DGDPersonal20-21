@@ -17,14 +17,16 @@ public class PlayerController : MonoBehaviour
     private GameManager gameManager;
     public HealthBar healthBar;
     public GameObject bulletPrefab;
+    public GameObject explosionParticle;
 
     // Start is called before the first frame update
     void Start()
     {
-        //prep health info
+        //set up health
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
 
+        //set up companion objects/components
         rb = GetComponent<Rigidbody>();
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
         playerAudio = GetComponent<AudioSource>();
@@ -39,6 +41,7 @@ public class PlayerController : MonoBehaviour
             if (currentHealth == 0)
             {
                 gameManager.GameOver();
+                Instantiate(explosionParticle, transform.position, transform.rotation);
             }
 
             //get inputs for movement
@@ -50,8 +53,10 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    //method to take care of the player's movement
     private void HandleMovement()
     {
+        //move the player
         Vector3 wantedPos = transform.position + (transform.forward * verticalInput * speed * Time.deltaTime);
         rb.MovePosition(wantedPos);
 
@@ -69,6 +74,7 @@ public class PlayerController : MonoBehaviour
         healthBar.SetHealth(currentHealth);
     }
 
+    //check for collisions (enemies)
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Enemy") && readyForDamage)
@@ -92,6 +98,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    //check for trigger (powerups)
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Health Powerup") && currentHealth < maxHealth)
@@ -107,7 +114,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    //run a cooldown so collision doesn't compound
+    //run a cooldown so collision can't compound
     IEnumerator CollisionCountdown()
     {
         yield return new WaitForSeconds(0.5f);

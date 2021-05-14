@@ -10,6 +10,7 @@ public class FollowPlayer : MonoBehaviour
     private float maxX = 11.5f;
     private float minZ = -17.4f;
     private float maxZ = 17.4f;
+
     // Start is called before the first frame update
     void Start()
     {

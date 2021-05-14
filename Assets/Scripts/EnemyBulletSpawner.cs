@@ -16,6 +16,7 @@ public class EnemyBulletSpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //set up companion objects/components
         player = GameObject.FindGameObjectWithTag("Player").transform;
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
         spawnerAudio = GetComponent<AudioSource>();

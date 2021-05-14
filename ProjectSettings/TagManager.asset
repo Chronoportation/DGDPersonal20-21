@@ -9,6 +9,7 @@ TagManager:
   - Bullet
   - Walls
   - Enemy Bullet
+  - Indicator
   layers:
   - Default
   - TransparentFX

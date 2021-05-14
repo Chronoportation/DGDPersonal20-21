@@ -4,43 +4,31 @@ using UnityEngine;
 
 public class DetectCollision : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public GameObject explosionParticle;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    //check for collision 
+    //check for collisions
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Walls"))
         {
+            //create explosion
+            Instantiate(explosionParticle, transform.position, transform.rotation);
             //destroy object
             Destroy(gameObject);
+            
         }
-
-        if (gameObject.CompareTag("Bullet") && collision.gameObject.CompareTag("Player"))
+        else if (collision.gameObject.CompareTag("Bullet") || collision.gameObject.CompareTag("Enemy Bullet"))
         {
-            //destroy object
-            Destroy(gameObject);
-        }
-
-        if (gameObject.CompareTag("Enemy Bullet") && collision.gameObject.CompareTag("Enemy"))
-        {
-            //destroy object
-            Destroy(gameObject);
-        }
-
-        if (collision.gameObject.CompareTag("Bullet") ||collision.gameObject.CompareTag("Enemy Bullet"))
-        {
+            //create explosion
+            Instantiate(explosionParticle, transform.position, transform.rotation);
+            //destroy both objects
             Destroy(gameObject);
             Destroy(collision.gameObject);
+        }
+        else
+        {
+            //destroy object
+            Destroy(gameObject);
         }
     }
 }

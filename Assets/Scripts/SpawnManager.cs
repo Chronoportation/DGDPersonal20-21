@@ -9,20 +9,22 @@ public class SpawnManager : MonoBehaviour
     private GameManager gameManager;
     public int enemyCount;
     private int waveNum = 3;
+    private int maxWaves = 16;
     private Vector3[] enemySpawnLocs = {new Vector3(-20.5f, 0f, 22f), new Vector3(-14f, 0f, 22f), new Vector3(0f, 0f, 22f),
     new Vector3(4.5f, 0f, 22f), new Vector3(21f, 0f, 22f), new Vector3(22f, 0f, 11.5f), new Vector3(-14.5f, 0f, 13.5f),
     new Vector3(-22f, 0f, 4.5f), new Vector3(22f, 0f, 5.5f), new Vector3(-22f, 0f, -1.5f), new Vector3(-22f, 0f, -10f),
     new Vector3(22f, 0f, -10.5f), new Vector3(3f, 0f, -16f), new Vector3(-2f, 0f, -16f), new Vector3(-22.5f, 0f, -22f),
-    new Vector3(-7f, 0f, -22f)};
-    private bool[] enemySpawns;
+    new Vector3(-7f, 0f, -22f)}; //possible spawn locations
+    private bool[] enemySpawns; //check array
     private Vector3[] pickupSpawnLocs = {new Vector3(0f, 0.5f, 0f), new Vector3(-7f, 0.5f, 4.5f), new Vector3(-6f, 0.5f, 16.5f),
     new Vector3(-15f, 0.5f, -5.75f), new Vector3(-9.2f, 0.5f, -19f), new Vector3(0f, 0.5f, -22f), new Vector3(13f, 0.5f, -4.5f),
-    new Vector3(10.5f, 0.5f, 2f), new Vector3(12.5f, 0.5f, 13.5f), new Vector3(-2f, 0.5f, -9f),};
-    private bool[] pickupSpawns;
+    new Vector3(10.5f, 0.5f, 2f), new Vector3(12.5f, 0.5f, 13.5f), new Vector3(-2f, 0.5f, -9f),}; //possible spawn locations
+    private bool[] pickupSpawns; //check array
 
     // Start is called before the first frame update
     void Start()
     {
+        //set up companion objects/components
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
         enemySpawns = new bool[enemySpawnLocs.Length];
         pickupSpawns = new bool[pickupSpawnLocs.Length];
@@ -39,8 +41,8 @@ public class SpawnManager : MonoBehaviour
             //get the current amount of enemies
             enemyCount = FindObjectsOfType<EnemyTank>().Length;
 
-            //make sure waves are not at the max of 16
-            if (waveNum == 16)
+            //stop the game if the max amount of waves is reached
+            if (waveNum == maxWaves)
             {
                 gameManager.GameOver();
             }
