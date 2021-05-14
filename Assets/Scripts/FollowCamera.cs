@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FollowCamera : MonoBehaviour
 {
-    public GameObject camera;
+    public new GameObject camera;
     public Vector3 offset;
 
     // Start is called before the first frame update
