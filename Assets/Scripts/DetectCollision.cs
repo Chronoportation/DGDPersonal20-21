@@ -15,7 +15,7 @@ public class DetectCollision : MonoBehaviour
             Instantiate(explosionParticle, transform.position, transform.rotation);
             //destroy object
             Destroy(gameObject);
-            
+
         }
         else if (collision.gameObject.CompareTag("Bullet") || collision.gameObject.CompareTag("Enemy Bullet"))
         {
@@ -27,7 +27,7 @@ public class DetectCollision : MonoBehaviour
         }
         else
         {
-            //destroy object
+            //destroy the object
             Destroy(gameObject);
         }
     }
