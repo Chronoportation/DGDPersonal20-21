@@ -14,7 +14,7 @@ public class FollowPlayer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //make sure the camera is in the right spot before checking out the bounds
+        //make sure the camera is in the right spot before checking the bounds
         transform.position = player.transform.position + offset;
     }
 

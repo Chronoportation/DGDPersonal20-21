@@ -32,7 +32,7 @@ public class PlayerController : MonoBehaviour
         playerAudio = GetComponent<AudioSource>();
     }
 
-    //called once per frame regulated
+    //called once per frame; regulated
     void FixedUpdate()
     {
         if (gameManager.isGameActive)
@@ -67,7 +67,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    //method to run when the player takes damage; will remove a given amount of health and adjust health bar respectively
+    //method for when the player takes damage; will remove a given amount of health and adjust health bar respectively
     private void TakeDamage(int damage)
     {
         currentHealth -= damage;
@@ -98,7 +98,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    //check for trigger (powerups)
+    //check for triggers (powerups)
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Health Powerup") && currentHealth < maxHealth)
@@ -120,5 +120,4 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         readyForDamage = true;
     }
-
 }

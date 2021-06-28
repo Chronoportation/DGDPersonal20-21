@@ -25,7 +25,7 @@ public class EnemyTank : MonoBehaviour
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
     }
 
-    //called once per frame
+    //called once per frame; regulated
     void FixedUpdate()
     {
         if (gameManager.isGameActive)

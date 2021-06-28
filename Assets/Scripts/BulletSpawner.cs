@@ -27,8 +27,10 @@ public class BulletSpawner : MonoBehaviour
         {
             //launch bullet
             Instantiate(bulletPrefab, transform.position, transform.rotation);
+
             //reset cooldown
             currentCooldown = 0;
+
             //play sound effect
             spawnerAudio.PlayOneShot(shootSound, 0.75f);
         }

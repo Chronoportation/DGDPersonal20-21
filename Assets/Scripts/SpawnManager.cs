@@ -52,6 +52,7 @@ public class SpawnManager : MonoBehaviour
             {
                 waveNum++;
                 enemySpawns = new bool[enemySpawnLocs.Length];
+                pickupSpawns = new bool[pickupSpawnLocs.Length];
                 SpawnWave(waveNum);
             }
         }

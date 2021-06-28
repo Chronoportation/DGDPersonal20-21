@@ -28,6 +28,8 @@ public class EnemyBulletSpawner : MonoBehaviour
         if (gameManager.isGameActive)
         {
             player = GameObject.FindGameObjectWithTag("Player").transform;
+
+            //start shooting if the player is within the range of maxDistance and past the cooldown
             if (Vector3.Distance(transform.position, player.transform.position) <= maxDistance && currentCooldown >= cooldown)
             {
                 //launch bullet
